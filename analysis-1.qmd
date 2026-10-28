@@ -1,8 +1,35 @@
 ---
-title: "Analysis 1"
-author: "avalee-lenard"
+title: "A Beautiful Graphic"
+author: "Avalee Lenard"
 format: html
 editor: visual
+execute:
+  echo: false
 ---
 
 Avalee Lenard is a data maestro!
+
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = 0.8) +
+  geom_smooth(aes(group = 1), method = "loess", se = FALSE,
+              color = "#3B2F63", linewidth = 1) +
+  scale_color_viridis_d(option = "C", end = 0.9) +
+  labs(
+    title = "Bigger engines, fewer highway miles",
+    subtitle = "Engine displacement and highway fuel economy across vehicle classes",
+    x = "Engine displacement (liters)",
+    y = "Highway fuel economy (miles per gallon)",
+    color = "Vehicle class"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    legend.position = "bottom"
+  )
+```
